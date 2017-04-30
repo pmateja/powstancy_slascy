@@ -8,14 +8,6 @@ from bs4 import BeautifulSoup
 import json
 
 
-"""
-It's just a simple script to download names of Silesian insurgents from museum page.
-Why? Because the site is down. Ok, but why? I'm using those names in my horror stories. It's just a nice name database.
-The site is now available on archive.org.
-
-"""
-
-
 def get_page(url):
     page = get(url)
     return page.content
@@ -60,6 +52,7 @@ def get_data(url):
     except:
         return []
 
+
 def run():
     base_url = "http://web.archive.org/web/20160412234021/http://phps.muzeumslaskie.pl/"
     index = "powstancy.php"
@@ -72,7 +65,6 @@ def run():
             database += get_data(urljoin(base_url, page_url))
     with open("output.json", "w") as f:
         f.write(json.dumps(database, sort_keys=True, indent=4))
-
 
 
 if __name__ == "__main__":
